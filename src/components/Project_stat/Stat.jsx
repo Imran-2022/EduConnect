@@ -1,6 +1,6 @@
 import React from "react";
 
-const Statistics = () => {
+const Stat = () => {
   // Sample data for statistics
   const statsData = [
     { label: "Total Tution Posts", value: 150 },
@@ -68,4 +68,4 @@ const Statistics = () => {
   );
 };
 
-export default Statistics;
+export default Stat;
