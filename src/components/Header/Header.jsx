@@ -6,7 +6,6 @@ const Header = () => {
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/tuition">Available Tuition </NavLink></li>
-        <li><NavLink to="/applied">Applied Tuition</NavLink></li>
         <li><NavLink to="/statistics">Statistics</NavLink></li>
         <li><NavLink to="/blogs">Blogs</NavLink></li>
     </>
@@ -29,8 +28,12 @@ const Header = () => {
                     {links}
                 </ul>
             </div>
-            <div className="navbar-end ">
-                <NavLink to="/apply" className=" bg-black text-white hover:text-black hover:bg-cyan-400 btn btn-sm btn-ghost">Apply Now</NavLink>
+            <div className="navbar-end gap-1">
+                {/* <NavLink to="/apply" className=" bg-black text-white hover:text-black hover:bg-cyan-400 btn btn-sm btn-ghost">Apply Now</NavLink> */}
+                {/* <NavLink to="/profile" className=" bg-black text-white hover:text-black hover:bg-cyan-400 btn btn-sm btn-ghost">Profile</NavLink> */}
+                {/* <NavLink to="/profile" className=" bg-black text-white hover:text-black hover:bg-cyan-400 btn btn-sm btn-ghost">Logout</NavLink> */}
+                <NavLink to="/profile" className=" bg-black text-white hover:text-black hover:bg-cyan-400 btn btn-sm btn-ghost">Login</NavLink>
+                <NavLink to="/profile" className=" bg-black text-white hover:text-black hover:bg-cyan-400 btn btn-sm btn-ghost">Register</NavLink>
             </div>
         </div>
     );

@@ -9,9 +9,9 @@ import Root from './components/Root/Root';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Home from './components/Home/Home';
 import Available_Tution from './components/Tution/Available_Tution';
-import Applied_Tution from './components/Tution/Applied_Tution';
+import Profile from './components/Profile/Profile'
 import Blogs from './components/Blogs/Blogs';
-import Statistics from './components/project_stat/Statistics';
+import Statistics from './components/Project_stat/Statistics';
 
 const router = createBrowserRouter([
   {
@@ -28,8 +28,8 @@ const router = createBrowserRouter([
         element: <Available_Tution/>
       }, 
       {
-        path: '/applied',
-        element: <Applied_Tution/>
+        path: '/profile',
+        element: <Profile/>
       }, 
       {
         path: '/statistics',

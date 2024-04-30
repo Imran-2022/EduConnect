@@ -1,6 +1,6 @@
 import React from "react";
 
-const Applied_Tution = () => {
+const Profile = () => {
   return (
     <div className="h-[61vh]">
       <p>This is Applied Tution Page ! </p>
@@ -8,4 +8,4 @@ const Applied_Tution = () => {
   );
 };
 
-export default Applied_Tution;
+export default Profile;
