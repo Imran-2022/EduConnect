@@ -10,8 +10,11 @@ import ErrorPage from './components/ErrorPage/ErrorPage';
 import Home from './components/Home/Home';
 import Available_Tution from './components/Tution/Available_Tution';
 import Profile from './components/Profile/Profile'
-import Blogs from './components/Blogs/Blogs';
 import Statistics from './components/Project_stat/Statistics';
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
+import Forget from './components/Auth/Forget';
+import About from './components/About/About';
 
 const router = createBrowserRouter([
   {
@@ -36,8 +39,20 @@ const router = createBrowserRouter([
         element: <Statistics/>
       }, 
       {
-        path: '/blogs',
-        element: <Blogs/>
+        path: '/about',
+        element: <About/>
+      }, 
+      {
+        path: '/login',
+        element: <Login/>
+      }, 
+      {
+        path: '/register',
+        element: <Register/>
+      }, 
+      {
+        path: '/forget-password',
+        element: <Forget/>
       }, 
     ]
   },
