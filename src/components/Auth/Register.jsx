@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 
 const Register = () => {
     const [inputs, setInputs] = useState({
+        username:"",
+        first_name:"",
+        last_name:"",
         email: "",
         password: "",
-        confirmPassword: "",
+        confirm_password: "",
     });
 
     const handleChange = (e) => {
@@ -14,17 +17,32 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const { email, password, confirmPassword } = inputs;
+        const {username, first_name,last_name,email, password, confirm_password } = inputs;
 
         // Validate password and confirmPassword
-        if (password !== confirmPassword) {
+        if (password !== confirm_password) {
             alert("Passwords do not match");
             return;
         }
 
         // Handle registration logic
-        console.log(email, password, confirmPassword);
-        // You can add your registration API call or logic here
+
+        //  into this url - http://127.0.0.1:8000/tutor/register/
+
+        // console.log({username, first_name,last_name,email, password, confirm_password })
+
+        const info={username, first_name,last_name,email, password, confirm_password };
+        fetch("http://127.0.0.1:8000/tutor/register/", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json', // Note the quotes around 'Content-Type'
+            },
+            body: JSON.stringify(info),
+          })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+
     };
 
     return (
@@ -39,6 +57,26 @@ const Register = () => {
                         value={inputs.username}
                         onChange={handleChange}
                         placeholder="Enter your username"
+                        required
+                    />
+                    <label className="font-semibold text-xs mt-3" htmlFor="usernameField">First Name</label>
+                    <input
+                        className="flex items-center h-12 px-4 w-80 border shadow mt-2 rounded focus:outline-none focus:ring-2"
+                        type="text"
+                        name="first_name"
+                        value={inputs.first_name}
+                        onChange={handleChange}
+                        placeholder="Enter your first name"
+                        required
+                    />
+                    <label className="font-semibold text-xs mt-3" htmlFor="usernameField">Last Name</label>
+                    <input
+                        className="flex items-center h-12 px-4 w-80 border shadow mt-2 rounded focus:outline-none focus:ring-2"
+                        type="text"
+                        name="last_name"
+                        value={inputs.last_name}
+                        onChange={handleChange}
+                        placeholder="Enter your last name"
                         required
                     />
                     <label className="font-semibold text-xs mt-3" htmlFor="useremailField">User Email</label>
@@ -61,12 +99,12 @@ const Register = () => {
                         placeholder="Enter your password"
                         required
                     />
-                    <label className="font-semibold text-xs mt-3" htmlFor="confirmPasswordField">Confirm Password</label>
+                    <label className="font-semibold text-xs mt-3" htmlFor="confirm_passwordField">Confirm Password</label>
                     <input
                         className="flex items-center h-12 px-4 w-80 border shadow mt-2 rounded focus:outline-none focus:ring-2"
                         type="password"
-                        name="confirmPassword"
-                        value={inputs.confirmPassword}
+                        name="confirm_password"
+                        value={inputs.confirm_password}
                         onChange={handleChange}
                         placeholder="Confirm your password"
                         required

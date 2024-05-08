@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link,useNavigate  } from 'react-router-dom';
 const Login = () => {
+    const navigate = useNavigate()
     const [inputs, setInputs] = useState({
-        email: "",
+        username: "",
         password: "",
     });
 
@@ -14,20 +14,38 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Handle login logic
-        console.log(e.target.email.value,e.target.password.value)
+        const {username,password} = inputs;
+        // console.log({username,password})
+
+        fetch("http://127.0.0.1:8000/tutor/login/",{
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json', // Note the quotes around 'Content-Type'
+              },
+              body: JSON.stringify({username,password}),
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            localStorage.setItem('token',data.token)
+            localStorage.setItem('user_id',data.user_id)
+            if(data.user_id){
+                navigate('/profile');
+            }
+        })
     };
 
     return (
         <div className="py-10 flex items-center justify-center ">
             <form className="flex flex-col bg-white rounded shadow-lg p-12 w-96" onSubmit={handleSubmit}>
-                <label className="font-semibold text-xs" htmlFor="usernameField">User Email</label>
+                <label className="font-semibold text-xs" htmlFor="usernameField">username</label>
                 <input
                     className="h-12 px-4 border shadow mt-2 rounded focus:outline-none focus:ring-2"
-                    type="email"
-                    name="email"
-                    value={inputs.email}
+                    type="text"
+                    name="username"
+                    value={inputs.username}
                     onChange={handleChange}
-                    placeholder="Enter your Email"
+                    placeholder="Enter your username"
                     required
                 />
                 <label className="font-semibold text-xs mt-3" htmlFor="passwordField">Password</label>

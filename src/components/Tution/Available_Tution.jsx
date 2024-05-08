@@ -1,6 +1,7 @@
 import React from "react";
 
 const Available_Tution = () => {
+
   return (
     <div className="container mx-auto px-4 py-8 flex">
       {/* Filter part */}

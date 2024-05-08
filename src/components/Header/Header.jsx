@@ -1,14 +1,69 @@
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
 
 const Header = () => {
-
+    const navigate = useNavigate()
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/tuition">Available Tuition </NavLink></li>
         <li><NavLink to="/statistics">Statistics</NavLink></li>
         <li><NavLink to="/about">About</NavLink></li>
     </>
+
+
+const [user, setUser] = useState(null);
+const userId=localStorage.getItem('user_id');
+
+useEffect(() => {
+
+  const fetchUser = async () => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/users/${userId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch user data');
+      }
+      const userData = await response.json();
+      setUser(userData);
+    } catch (error) {
+      console.error('Error fetching user:', error);
+    }
+  };
+
+  fetchUser();
+}, [userId]); // Fetch user data when userId changes or component mounts
+
+
+const handleLogout = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token'); // Get the token from localStorage
+  
+    // Check if token exists before making the logout request
+    if (token) {
+      fetch("http://127.0.0.1:8000/tutor/logout/", {
+        method: 'GET', // Change method to POST
+        headers: {
+          'Authorization': `Token ${token}`,
+          'Content-Type': 'application/json',
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        localStorage.removeItem('token'); // Remove the token from localStorage upon logout
+        localStorage.removeItem('user_id'); // Remove the token from localStorage upon logout
+        navigate('/login'); // Redirect to login page after successful logout
+      })
+      .catch(error => {
+        console.error('Error logging out:', error);
+      });
+    } else {
+      console.error('Token not found in localStorage');
+      // Handle the case where token is not found (optional)
+    }
+  };
+  
+
 
     return (
         <div className="navbar bg-base-100">
@@ -29,11 +84,21 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end gap-1">
-                {/* <NavLink to="/apply" className=" bg-black text-white hover:text-black hover:bg-cyan-400 btn btn-sm btn-ghost">Apply Now</NavLink> */}
-                {/* <NavLink to="/profile" className=" bg-black text-white hover:text-black hover:bg-cyan-400 btn btn-sm btn-ghost">Profile</NavLink> */}
-                {/* <NavLink to="/profile" className=" bg-black text-white hover:text-black hover:bg-cyan-400 btn btn-sm btn-ghost">Logout</NavLink> */}
-                <NavLink to="/login" className=" bg-black text-white hover:text-black hover:bg-cyan-400 btn btn-sm btn-ghost">Login</NavLink>
+
+                {user?.username?
+                    <>
+                    <NavLink to="/profile" className=" bg-black text-white hover:text-black hover:bg-cyan-400 btn btn-sm btn-ghost">Profile</NavLink>
+                <p onClick={handleLogout} className=" bg-black text-white hover:text-black hover:bg-cyan-400 btn btn-sm btn-ghost">Logout</p>
+                    </>:
+                
+                    <>
+<NavLink to="/login" className=" bg-black text-white hover:text-black hover:bg-cyan-400 btn btn-sm btn-ghost">Login</NavLink>
                 <NavLink to="/register" className=" bg-black text-white hover:text-black hover:bg-cyan-400 btn btn-sm btn-ghost">Register</NavLink>
+                    </>
+                }
+                {/* <NavLink to="/apply" className=" bg-black text-white hover:text-black hover:bg-cyan-400 btn btn-sm btn-ghost">Apply Now</NavLink> */}
+                
+                
             </div>
         </div>
     );
