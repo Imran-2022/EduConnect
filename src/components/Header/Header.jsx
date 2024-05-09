@@ -40,7 +40,7 @@ const handleLogout = (e) => {
   
     // Check if token exists before making the logout request
     if (token) {
-      fetch("http://127.0.0.1:8000/tutor/logout/", {
+      fetch(`${import.meta.env.VITE_ENDPOINT}/tutor/logout/`, {
         method: 'GET', // Change method to POST
         headers: {
           'Authorization': `Token ${token}`,

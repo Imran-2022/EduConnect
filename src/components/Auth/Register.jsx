@@ -32,7 +32,7 @@ const Register = () => {
         // console.log({username, first_name,last_name,email, password, confirm_password })
 
         const info={username, first_name,last_name,email, password, confirm_password };
-        fetch("http://127.0.0.1:8000/tutor/register/", {
+        fetch(`${import.meta.env.VITE_ENDPOINT}/tutor/register/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json', // Note the quotes around 'Content-Type'

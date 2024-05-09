@@ -8,7 +8,7 @@ const Profile = () => {
 
     const fetchUser = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/users/${userId}`);
+        const response = await fetch(`${import.meta.env.VITE_ENDPOINT}/users/${userId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch user data');
         }

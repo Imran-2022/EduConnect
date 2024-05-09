@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link,useNavigate  } from 'react-router-dom';
 const Login = () => {
+    // console.log(import.meta.env.VITE_ENDPOINT)
     const navigate = useNavigate()
     const [inputs, setInputs] = useState({
         username: "",
@@ -17,7 +18,7 @@ const Login = () => {
         const {username,password} = inputs;
         // console.log({username,password})
 
-        fetch("http://127.0.0.1:8000/tutor/login/",{
+        fetch(`${import.meta.env.VITE_ENDPOINT}/tutor/login/`,{
             method:'POST',
             headers: {
                 'Content-Type': 'application/json', // Note the quotes around 'Content-Type'
