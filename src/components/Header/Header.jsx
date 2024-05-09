@@ -52,6 +52,7 @@ const handleLogout = (e) => {
         console.log(data);
         localStorage.removeItem('token'); // Remove the token from localStorage upon logout
         localStorage.removeItem('user_id'); // Remove the token from localStorage upon logout
+        setUser(null);
         navigate('/login'); // Redirect to login page after successful logout
       })
       .catch(error => {
