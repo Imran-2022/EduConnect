@@ -15,6 +15,7 @@ import Register from './components/Auth/Register';
 import Forget from './components/Auth/Forget';
 import About from './components/About/About';
 import Stat from './components/Project_stat/Stat';
+import Tuition_details from './components/Tution/Tution_details';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/tuition',
         element: <Available_Tution/>
+      }, 
+      {
+        path: '/tuition/:id',
+        element: <Tuition_details/>
       }, 
       {
         path: '/profile',

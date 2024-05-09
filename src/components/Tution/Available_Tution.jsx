@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 
 const Available_Tution = () => {
   // Define state to store the fetched data
@@ -21,7 +22,7 @@ const Available_Tution = () => {
     fetchTuitionData();
   }, []); // Empty dependency array means this effect runs once after the first render
 
-  console.log(tuitionData)
+  // console.log(tuitionData)
 
    // Function to truncate text to a maximum number of words
    const truncateText = (text, maxWords) => {
@@ -91,8 +92,8 @@ const Available_Tution = () => {
             <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
             {truncateText(tuition.description, 15)}
             </p>
-            <a
-              href="#"
+            <Link
+              to={`/tuition/${tuition?.id}`}
               className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
             >
               <svg
@@ -106,7 +107,7 @@ const Available_Tution = () => {
                 <path d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
               </svg>{" "}
               View Details
-            </a>
+            </Link>
           </li>
         ))}
       </ol>
