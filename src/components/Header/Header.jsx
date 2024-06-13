@@ -19,7 +19,11 @@ useEffect(() => {
 
   const fetchUser = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_ENDPOINT}/users/${userId}`);
+      const token = localStorage.getItem('token');
+        const response = await fetch(`${import.meta.env.VITE_ENDPOINT}/users/${userId}`,{
+          headers: {
+            'Authorization': `Token ${token}`
+          }});
       if (!response.ok) {
         throw new Error('Failed to fetch user data');
       }
