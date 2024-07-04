@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Register = () => {
+    const navigate = useNavigate();
     const [inputs, setInputs] = useState({
         username:"",
         first_name:"",
@@ -40,13 +44,25 @@ const Register = () => {
             body: JSON.stringify(info),
           })
             .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(error => console.error('Error:', error));
+            .then(data => {
+                console.log(data)
+                if(data?.username){
+                    toast.error(data?.username[0]);
+                }else{
+                    toast.success("Check your mail for confirmation");
+                    setTimeout(() => navigate('/login'), 6000);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error)
+                toast.error("Registration failed. Please try again.");
+            });
 
     };
 
     return (
             <div className="flex flex-col items-center justify-center w-full  py-2 text-gray-700">
+                 <ToastContainer />
                 <form className="flex flex-col bg-white rounded shadow-lg p-12 my-10" onSubmit={handleSubmit}>
                     <h2 className="text-3xl mb-6 font-semibold text-center">Register</h2>
                     <label className="font-semibold text-xs" htmlFor="usernameField">User Name</label>
