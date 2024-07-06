@@ -17,6 +17,7 @@ import About from './components/About/About';
 import Stat from './components/Project_stat/Stat';
 import Tuition_details from './components/Tution/Tution_details';
 import AvailableTutor from './components/AvailableTutor/AvailableTutor';
+import TutorDetail from './components/AvailableTutor/TutorDetail';
 
 const router = createBrowserRouter([
   {
@@ -33,8 +34,12 @@ const router = createBrowserRouter([
         element: <Available_Tution/>
       }, 
       {
-        path: '/abailable_tutor',
+        path: '/available_tutor',
         element: <AvailableTutor/>
+      }, 
+      {
+        path: '/available_tutor/:id',
+        element: <TutorDetail/>
       }, 
       {
         path: '/tuition/:id',

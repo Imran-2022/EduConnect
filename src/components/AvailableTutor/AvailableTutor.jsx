@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const AvailableTutor = () => {
   const [tutors, setTutors] = useState([]);
@@ -27,7 +28,7 @@ const AvailableTutor = () => {
     if (experienceFilter === "") {
       setFilteredTutors(tutors);
     } else {
-      const filtered = tutors.filter(tutor => {
+      const filtered = tutors.filter((tutor) => {
         const experienceYears = parseInt(tutor.experience.match(/\d+/)); // Extract number from experience string
         if (experienceFilter === "more") {
           return experienceYears > 5;
@@ -45,13 +46,13 @@ const AvailableTutor = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-4">Available Tutors</h1>
-      
+
       <div className="mb-4">
         <label htmlFor="experienceFilter" className="mr-2">Filter by years of experience:</label>
-        <select 
-          id="experienceFilter" 
-          value={experienceFilter} 
-          onChange={handleExperienceChange} 
+        <select
+          id="experienceFilter"
+          value={experienceFilter}
+          onChange={handleExperienceChange}
           className="border border-gray-300 rounded px-2 py-1"
         >
           <option value="">All</option>
@@ -64,17 +65,40 @@ const AvailableTutor = () => {
         </select>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {filteredTutors.map((tutor) => (
-          <div key={tutor.id} className="border border-gray-200 p-4 rounded-lg shadow-lg">
-            <img src={`${tutor.image}`} alt={`${tutor.user}'s profile`} className="w-full h-48 object-cover rounded-lg mb-4" />
-            <h3 className="text-lg font-semibold">{tutor.user}</h3>
-            <p className="text-gray-600"><strong>Mobile:</strong> {tutor.mobile_no}</p>
-            <p className="text-gray-600"><strong>Description:</strong> {tutor.description}</p>
-            <p className="text-gray-600"><strong>Experience:</strong> {tutor.experience}</p>
-            <p className="text-gray-600"><strong>Qualification:</strong> {tutor.educational_qualification}</p>
-          </div>
-        ))}
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white border border-gray-200">
+          <thead>
+            <tr>
+              <th className="px-4 py-2 border">No</th>
+              <th className="px-4 py-2 border">Username</th>
+              <th className="px-4 py-2 border">Experience</th>
+              <th className="px-4 py-2 border">Qualification</th>
+              <th className="px-4 py-2 border">Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredTutors.map((tutor, index) => {
+              const isDisabled = !tutor.experience || !tutor.educational_qualification;
+              return (
+                <tr key={tutor.id} className="border-t">
+                  <td className="px-4 py-2 border">{index + 1}</td>
+                  <td className="px-4 py-2 border">{tutor.user}</td>
+                  <td className="px-4 py-2 border">{tutor.experience}</td>
+                  <td className="px-4 py-2 border">{tutor.educational_qualification}</td>
+                  <td className="px-4 py-2 border">
+                    {isDisabled ? (
+                      <span className="text-gray-400">More</span>
+                    ) : (
+                      <Link to={`/available_tutor/${tutor.id}`} className="text-blue-500 hover:underline">
+                        More
+                      </Link>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </div>
   );

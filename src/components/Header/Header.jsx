@@ -7,7 +7,7 @@ const Header = () => {
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/tuition">Available Tuition </NavLink></li>
-        <li><NavLink to="/abailable_tutor">Available Tutor</NavLink></li>
+        <li><NavLink to="/available_tutor">Available Tutor</NavLink></li>
         <li><NavLink to="/statistics">Statistics</NavLink></li>
         <li><NavLink to="/about">About</NavLink></li>
     </>
@@ -82,7 +82,8 @@ const handleLogout = (e) => {
                         {links}
                     </ul>
                 </div>
-                <p className="normal-case text-xl">EduConnect</p>
+                <h1 className="text-2xl font-bold text-gray-800 text-center">TutorMatch</h1>
+                
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
