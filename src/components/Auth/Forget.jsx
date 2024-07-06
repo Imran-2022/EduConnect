@@ -24,7 +24,7 @@ const Forget = () => {
             </div>
         </div>
     ) : (
-        <div className="flex flex-col items-center justify-center w-full  h-[70vh]   text-gray-700">
+        <div className="flex flex-col items-center justify-center w-full  h-[70vh]   text-gray-700 min-h-[85vh]">
             <div className="w-full sm:w-1/2 shadow-lg  p-5 rounded-lg lg:rounded-l-none">
                 <div className="px-8 mb-4 text-center">
                     <h3 className="pt-4 mb-2 text-2xl">Forgot Your Password?</h3>

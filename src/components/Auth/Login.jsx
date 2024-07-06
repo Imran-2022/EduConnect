@@ -37,7 +37,7 @@ const Login = () => {
     };
 
     return (
-        <div className="py-10 flex items-center justify-center ">
+        <div className="py-10 flex items-center justify-center min-h-[85vh]">
             <form className="flex flex-col bg-white rounded shadow-lg p-12 w-96" onSubmit={handleSubmit}>
                 <label className="font-semibold text-xs" htmlFor="usernameField">username</label>
                 <input

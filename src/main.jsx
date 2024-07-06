@@ -18,6 +18,7 @@ import Stat from './components/Project_stat/Stat';
 import Tuition_details from './components/Tution/Tution_details';
 import AvailableTutor from './components/AvailableTutor/AvailableTutor';
 import TutorDetail from './components/AvailableTutor/TutorDetail';
+import CreateProfile from './components/Profile/CreateProfile';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile/>
+      }, 
+      {
+        path: '/profile/create',
+        element: <CreateProfile/>
       }, 
       {
         path: '/statistics',

@@ -53,7 +53,7 @@ const Available_Tuition = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 flex">
+    <div className="container mx-auto px-4 py-8 flex min-h-[90vh]">
       <div className="w-1/5 pr-8">
         <h1 className="text-3xl font-bold mb-6">Filter</h1>
         <div className="mb-8">

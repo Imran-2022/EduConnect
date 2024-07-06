@@ -8,10 +8,9 @@ const Header = () => {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/tuition">Available Tuition </NavLink></li>
         <li><NavLink to="/available_tutor">Available Tutor</NavLink></li>
-        <li><NavLink to="/statistics">Statistics</NavLink></li>
-        <li><NavLink to="/about">About</NavLink></li>
+        {/* <li><NavLink to="/statistics">Statistics</NavLink></li> */}
+        <li><NavLink to="/about">Contact</NavLink></li>
     </>
-
 
 const [user, setUser] = useState(null);
 const userId=localStorage.getItem('user_id');

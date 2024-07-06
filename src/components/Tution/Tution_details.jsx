@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Tuition_details = () => {
     const { id } = useParams();
@@ -42,19 +44,24 @@ const Tuition_details = () => {
             const responseData = await response.json();
 
             if (!response.ok) {
+                // toast.error(responseData.error || 'Failed to apply for tuition');
                 throw new Error(responseData.error || 'Failed to apply for tuition');
+            }else{
+                toast.success("Application submitted successfully!");
             }
 
-            alert('Application submitted successfully!');
+            // alert('Application submitted successfully!');
             // Optionally, update the UI or redirect the user
         } catch (error) {
-            console.error('Error applying for tuition:', error);
-            alert(error.message || 'Failed to apply for tuition');
+            // console.error('Error applying for tuition:', error);
+            toast.error(error.message || 'Failed to apply for tuition');
+            // alert(error.message || 'Failed to apply for tuition');
         }
     };
 
     return (
-        <div className="py-9">
+        <div className="py-9 min-h-[90vh]">
+             <ToastContainer />
             {tuitionData ? (
                 <div className="bg-white shadow-md rounded-sm overflow-hidden">
                     <div className="p-6">
