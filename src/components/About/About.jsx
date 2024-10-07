@@ -25,7 +25,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="mx-32 py-12">
+    <section className="mx-50 py-12">
       <div className="bg-white shadow-sm rounded gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
         <div className="font-light text-gray-500 sm:text-lg">
           <h2

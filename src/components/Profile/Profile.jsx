@@ -98,7 +98,7 @@ const Profile = () => {
 
           {tutorProfile ? (
             <div className="border border-gray-200 p-4 rounded-lg mt-4">
-              <img src={`${import.meta.env.VITE_ENDPOINT}${tutorProfile.image}`} alt={`${tutorProfile.user}'s profile`} className="w-full h-48 object-cover rounded-lg mb-4" />
+              <img src={`${import.meta.env.VITE_ENDPOINT}${tutorProfile.image}`} alt={`${tutorProfile.user}'s profile`} className="w-48 h-48 object-cover rounded-lg mb-4" />
               <h3 className="text-lg font-semibold">{tutorProfile.user}</h3>
               <p className="text-gray-600"><strong>Mobile:</strong> {tutorProfile.mobile_no}</p>
               <p className="text-gray-600"><strong>Description:</strong> {tutorProfile.description}</p>
