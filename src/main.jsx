@@ -14,7 +14,7 @@ import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import Forget from './components/Auth/Forget';
 import About from './components/About/About';
-import Stat from './components/Project_stat/Stat';
+import TuitionPostForm from './components/Project_stat/TuitionPostForm';
 import Tuition_details from './components/Tution/Tution_details';
 import AvailableTutor from './components/AvailableTutor/AvailableTutor';
 import TutorDetail from './components/AvailableTutor/TutorDetail';
@@ -55,8 +55,8 @@ const router = createBrowserRouter([
         element: <CreateProfile/>
       }, 
       {
-        path: '/statistics',
-        element: <Stat/>
+        path: '/tuitionpostform',
+        element: <TuitionPostForm/>
       }, 
       {
         path: '/about',

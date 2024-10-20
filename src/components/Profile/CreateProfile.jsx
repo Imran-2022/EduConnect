@@ -156,7 +156,7 @@ const CreateProfile = () => {
               <input
                 type="text"
                 id="mobileNo"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:outline-none sm:text-sm rounded-md"
                 value={mobileNo}
                 onChange={(e) => setMobileNo(e.target.value)}
               />
@@ -168,7 +168,7 @@ const CreateProfile = () => {
               <textarea
                 id="description"
                 rows="3"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:outline-none sm:text-sm rounded-md"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
@@ -180,7 +180,7 @@ const CreateProfile = () => {
               <input
                 type="text"
                 id="experience"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:outline-none sm:text-sm rounded-md"
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
               />
@@ -192,7 +192,7 @@ const CreateProfile = () => {
               <input
                 type="text"
                 id="qualification"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 shadow-sm focus:outline-none sm:text-sm rounded-md"
                 value={qualification}
                 onChange={(e) => setQualification(e.target.value)}
               />

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link} from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -39,7 +42,7 @@ const Profile = () => {
         }
         const applicationsData = await response.json();
         setApplications(applicationsData);
-        console.log(applicationsData);
+        // console.log(applicationsData);
       } catch (error) {
         console.error('Error fetching applications:', error);
       }
@@ -71,8 +74,34 @@ const Profile = () => {
     fetchTutorProfile();
   }, [userId]);
 
+  const handleDeleteTutorProfile = async (id) => {
+    console.log("id",id);
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${import.meta.env.VITE_ENDPOINT}/tutor/user-tutor-profile/${id}/`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Token ${token}`
+        }
+      });
+  
+      if (response.status === 204) {
+        // alert('Tutor profile deleted successfully.');
+        toast.success('Tutor profile deleted successfully.');
+        setTutorProfile(null); // Update the state after deletion
+      } else {
+        throw new Error('Failed to delete tutor profile');
+      }
+    } catch (error) {
+      console.error('Error deleting tutor profile:', error);
+      alert('Error deleting tutor profile.');
+    }
+  };
+  
+
   return (
     <div className="container mx-auto px-4 py-8 min-h-[90vh]">
+      <ToastContainer />
       {user ? (
         <div>
           <h1 className="text-2xl font-bold mb-4">Profile</h1>
@@ -90,8 +119,18 @@ const Profile = () => {
           </div>
           <div className="flex justify-between mt-8">
             <h2 className="text-xl font-bold">Tutor Profile</h2>
-            <Link to="create"><button type="button" className="text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 me-2 mb-2">
-            <svg className="w-4 h-4 me-2 -ms-1" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="paypal" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4 .7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9 .7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"></path></svg>
+            <Link to="create"><button type="button" className="text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 me-2 mb-2 bg-cyan-400">
+            <svg
+              className="w-4 h-4 me-2 -ms-1"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <path
+                fill="currentColor"
+                d="M256 256c-70.69 0-128-57.31-128-128S185.31 0 256 0s128 57.31 128 128-57.31 128-128 128zm0 32c70.69 0 256 35.29 256 106.99v19.97c0 15.09-12.24 28.99-27.78 28.99H27.78C12.24 442.99 0 429.09 0 414v-19.97C0 323.29 185.31 288 256 288z"
+              />
+            </svg>
             Create/Update Tutor Profile
             </button></Link>
           </div>
@@ -104,6 +143,13 @@ const Profile = () => {
               <p className="text-gray-600"><strong>Description:</strong> {tutorProfile.description}</p>
               <p className="text-gray-600"><strong>Experience:</strong> {tutorProfile.experience}</p>
               <p className="text-gray-600"><strong>Qualification:</strong> {tutorProfile.educational_qualification}</p>
+               {/* Delete Button */}
+              <button
+                onClick={()=>handleDeleteTutorProfile(tutorProfile.id)}
+                className="mt-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+              >
+                Delete Tutor Profile
+              </button>
             </div>
           ) : (
             <p>No tutor profile found.</p>
@@ -112,7 +158,7 @@ const Profile = () => {
           <table className="min-w-full mt-4 border-collapse border border-gray-200">
             <thead>
               <tr>
-                <th className="border border-gray-200 px-4 py-2">Tuition Post</th>
+                <th className="border border-gray-200 px-4 py-2">Applied Tuition Post</th>
                 <th className="border border-gray-200 px-4 py-2">Status</th>
                 <th className="border border-gray-200 px-4 py-2">Application Date</th>
               </tr>

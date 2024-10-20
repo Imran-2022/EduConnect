@@ -26,7 +26,7 @@ const TutorDetail = () => {
 
   const handleTuitionRequest = () => {
     // Implement the tuition request logic here
-    console.log("Tuition request made for tutor:", tutor.id);
+    // console.log("Tuition request made for tutor:", tutor.id);
     const msg=`Tuition request made for tutor: ${tutor.id}`;
     toast.success(msg);
   };
